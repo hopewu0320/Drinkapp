@@ -8,4 +8,5 @@ class Drink(models.Model):
     price = models.IntegerField()
     creadted = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    image = models.CharField(max_length=40, null=True,blank=False)
 

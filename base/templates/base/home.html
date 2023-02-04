@@ -5,8 +5,12 @@
     <div>
         <p>Not Sign up Yet? Click <a href="">Login</a></p>
     </div>
-    <div>
-        <img src="{% static 'images/玫瑰香妃茶.jpg' %}" alt="玫瑰香妃茶">
-        <img src="{% static 'images/晚安舒眠茶.jpg' %}" alt="晚安舒眠茶">
-    </div>
+    {% for drink in drinks %}
+        <div>
+            <img src="static/{{drink.image}}" alt={{drink.name}}>
+            <div>
+                <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock content %}
