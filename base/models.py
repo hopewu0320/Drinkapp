@@ -10,3 +10,5 @@ class Drink(models.Model):
     updated = models.DateTimeField(auto_now=True)
     image = models.CharField(max_length=40, null=True,blank=False)
 
+#class Cart(models.Model):
+

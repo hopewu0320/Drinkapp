@@ -6,6 +6,10 @@
     <div>
         <p>{{drink.name}}:</p>
         <p>{{drink.description}}</p>
+        <form method="POST" action="{% url 'cart' %}">
+            {% csrf_token %}
+            <input type="submit" value="加入購物車" />
+        </form>
     </div>
     
 {% endblock content %}

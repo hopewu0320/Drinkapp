@@ -12,3 +12,8 @@ def productinfo(request,pk):
     drink = Drink.objects.get(id=pk)
     context = {'drink':drink}
     return render(request, 'base/productinfo.html',context)
+
+def cart(request):
+    
+    context = {}
+    return render(request, 'base/cart.html',context)
