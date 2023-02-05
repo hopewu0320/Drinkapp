@@ -2,5 +2,25 @@
 
 
 {% block content %}
-    <p>werewrwerwer</p>
+<table>
+    <tr>
+        <td>商品名稱</td>
+        <td>商品單價</td>
+        <td>商品數量</td>
+        <td>金額</td>
+    </tr>
+    {% for cart in carts %}
+        <tr>
+            <td>{{cart.drink.name}}</td>
+            <td>{{cart.drink.price}}</td>
+            <td>1</td>
+            <td>{{cart.drink.price}}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td>總共 {{total}}元</td>
+    </tr>
+</table>
+
+
 {% endblock content %}

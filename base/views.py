@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Drink
+from .models import Drink,Cart
 # Create your views here.
 
 def home(request):
@@ -13,7 +13,23 @@ def productinfo(request,pk):
     context = {'drink':drink}
     return render(request, 'base/productinfo.html',context)
 
+#需要物品的數量 價錢
+def addtocart(request,pk):    #東西加入完購物車 導向cart
+    drink = Drink.objects.get(id=pk)
+    total = drink.price
+    if request.method == "POST":
+        Cart.objects.create(
+        drink = drink,
+        total = total
+        )
+        context = {'total':total}
+        return redirect('cart')
+    #context = {'total':total}
+    #return render(request, 'base/addtocart.html',context)
 def cart(request):
-    
-    context = {}
+    carts =Cart.objects.all()
+    total = 0
+    for cart in carts:
+        total+=cart.drink.price
+    context = {'carts':carts,'total':total}
     return render(request, 'base/cart.html',context)

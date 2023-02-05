@@ -10,5 +10,7 @@ class Drink(models.Model):
     updated = models.DateTimeField(auto_now=True)
     image = models.CharField(max_length=40, null=True,blank=False)
 
-#class Cart(models.Model):
+class Cart(models.Model):
+    drink = models.ForeignKey(Drink,on_delete=models.SET_NULL,null=True)
+    total = models.IntegerField()
 

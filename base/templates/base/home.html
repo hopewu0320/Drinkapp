@@ -1,16 +1,29 @@
 {% extends 'base/main.html' %}
-{% load static %}
 
 {% block content %}
+<style>
+    .cart-button{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
     <div>
         <p>Not Sign up Yet? Click <a href="">Login</a></p>
     </div>
-    {% for drink in drinks %}
+    <div class="cart-button">
         <div>
-            <img src="static/{{drink.image}}" alt={{drink.name}}>
-            <div>
-                <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
-            </div>
+            {% for drink in drinks %}
+                <div>
+                    <img src="static/{{drink.image}}" alt={{drink.name}}>
+                    <div>
+                        <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+
+        <div>
+            <a href="{% url 'cart' %}">購物車</a>
+        </div>
+    </div>
 {% endblock content %}
