@@ -49,9 +49,12 @@ def editcart(request,pk):
         print("加入")
         cart.amount = cart.amount+1
         cart.save()
-    else:
+    elif type=='-':
         print("減少")
         cart.amount = cart.amount-1
         cart.save()
+    else:
+        cart.delete()
     return redirect('cart')
     #return HttpResponse("Hello, world. You're at the polls index.")
+

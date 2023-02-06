@@ -19,6 +19,7 @@
                 <form action="{% url 'editcart' cart.drink.id %}">
                     <input type="submit" value="-" name="{{cart.drink.name}}">
                     <input type="submit" value="+" name="{{cart.drink.name}}">
+                    <a href="{% url 'editcart' cart.drink.id %}">刪除</a>
                 </form>
              </td>
         </tr>
