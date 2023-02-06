@@ -12,6 +12,5 @@ class Drink(models.Model):
 
 class Cart(models.Model):
     drink = models.ForeignKey(Drink,on_delete=models.SET_NULL,null=True)
-    name = models.CharField(max_length=200,null=True)
-    amount = models.IntegerField(null=True)
+    total = models.IntegerField()
 
