@@ -13,11 +13,9 @@ def productinfo(request,pk):
     context = {'drink':drink}
     return render(request, 'base/productinfo.html',context)
 
-#按下購物車按鈕 商品的amount數量上升
-#如果drink.name not exist,create object else 加入
-#https://stackoverflow.com/questions/11714536/check-if-an-object-exists
-#用filter 可以數物品數
-def addtocart(request,pk):    #東西加入完購物車 導向cart
+
+#東西加入完購物車 導向cart
+def addtocart(request,pk):    
     drink = Drink.objects.get(id=pk)
     if request.method == "POST":
         if Cart.objects.filter(drink=drink).exists():
@@ -41,3 +39,19 @@ def cart(request):
     context = {'carts':carts,'total':total}
     return render(request, 'base/cart.html',context)
 
+#更改購物車內容 增加 減少 清空購物車 
+#問題:可以把數量減到負數 數量至少為1 小於1就要刪除
+def editcart(request,pk):
+    drink = Drink.objects.get(id=pk)
+    cart = Cart.objects.get(drink=drink)
+    type = request.GET.get(drink.name)
+    if type == '+':
+        print("加入")
+        cart.amount = cart.amount+1
+        cart.save()
+    else:
+        print("減少")
+        cart.amount = cart.amount-1
+        cart.save()
+    return redirect('cart')
+    #return HttpResponse("Hello, world. You're at the polls index.")

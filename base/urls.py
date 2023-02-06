@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 urlpatterns = [
-    path("", views.home),
+    path("", views.home,name='home'),
     path("productinfo/<str:pk>/", views.productinfo,name='productinfo'),
     path("cart/", views.cart,name='cart'),
     path("addtocart/<str:pk>/", views.addtocart,name='addtocart'),
+    path("editcart/<str:pk>/", views.editcart,name='editcart'),
 ]

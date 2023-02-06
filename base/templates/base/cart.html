@@ -15,10 +15,20 @@
             <td>{{cart.drink.price}}</td>
             <td>{{cart.amount}}</td>
             <td>{{cart.subtotal}}</td>
+            <td>
+                <form action="{% url 'editcart' cart.drink.id %}">
+                    <input type="submit" value="-" name="{{cart.drink.name}}">
+                    <input type="submit" value="+" name="{{cart.drink.name}}">
+                </form>
+             </td>
         </tr>
     {% endfor %}
     <tr>
-        <td>總共 {{total}}元</td>
+        <td>總共 {{total}}元
+            <form action="{% url 'home' %}">
+                <input type="submit" value="繼續購物">
+            </form>
+        </td>
     </tr>
 </table>
 
