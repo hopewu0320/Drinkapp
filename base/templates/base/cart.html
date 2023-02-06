@@ -13,9 +13,16 @@
         <tr>
             <td>{{cart.drink.name}}</td>
             <td>{{cart.drink.price}}</td>
-            <td>1</td>
+            <td>{{cart.amount}}</td>
             <td>{{cart.drink.price}}</td>
-        </tr>
+            <td><form method="GET" action="" >
+                <input type="submit" value="減少" name="type"/>
+                </form>
+            </td>
+            <td><form method="GET" action="" >
+                <input type="submit" value="增加" name="type"/>
+                </form>
+            </td>
     {% endfor %}
     <tr>
         <td>總共 {{total}}元</td>
