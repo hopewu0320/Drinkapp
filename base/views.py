@@ -27,8 +27,8 @@ def addtocart(request,pk):    #東西加入完購物車 導向cart
         else:
             Cart.objects.create(
             drink = drink,
-            name = drink.name,
-            amount=1,
+            amount = 1,
+            subtotal = 0,
             )  
         return redirect('cart')
     #context = {'total':total}
@@ -37,7 +37,7 @@ def cart(request):
     carts = Cart.objects.all()
     total = 0 
     for cart in carts:
-        total+=cart.drink.price
+        total+=cart.subtotal
     context = {'carts':carts,'total':total}
     return render(request, 'base/cart.html',context)
 

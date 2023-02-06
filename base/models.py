@@ -9,8 +9,15 @@ class Drink(models.Model):
     creadted = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     image = models.CharField(max_length=40, null=True,blank=False)
+    def __str__(self):
+        return self.name
 
 class Cart(models.Model):
     drink = models.ForeignKey(Drink,on_delete=models.SET_NULL,null=True)
-    amount = models.CharField(max_length=200,null=True)
-    
+    amount = models.IntegerField(null=True)
+    subtotal = models.IntegerField(null=True)
+    def __str__(self):
+        return self.drink.name + str(self.amount) + "杯"
+    def save(self, *args, **kwargs):
+        self.subtotal = self.drink.price * self.amount
+        super(Cart, self).save(*args, **kwargs)
