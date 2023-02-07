@@ -24,14 +24,14 @@
              </td>
         </tr>
     {% endfor %}
-    <tr>
-        <td>總共 {{total}}元
-            <form action="{% url 'home' %}">
-                <input type="submit" value="繼續購物">
-            </form>
-        </td>
-    </tr>
 </table>
+<p>總共 {{total}}元</p>
+<form action="{% url 'home' %}">
+    <input type="submit" value="繼續購物">
+</form>
+<form action="{% url 'deletecart'  %}">
+    <input type="submit" value="清空購物車",name="delete">
+</form>
 
 
 {% endblock content %}
