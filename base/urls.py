@@ -18,7 +18,8 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path("", views.home,name='home'),
-    path("login_register/", views.loginPage,name='login_register'),
+    path("login/", views.loginPage,name='login'),
+    path("register/", views.registerPage,name='register'),
     path("logout/", views.logoutUser,name='logout'),
     path("productinfo/<str:pk>/", views.productinfo,name='productinfo'),
     path("cart/", views.cart,name='cart'),

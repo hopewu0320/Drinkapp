@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Drink,Cart
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import (
     authenticate,
@@ -27,6 +28,20 @@ def loginPage(request):
         else:
             messages.error(request,'Username or password is incorrect!')
     context={'page':page}
+    return render(request, 'base/login_register.html',context)
+def registerPage(request):
+    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+           user = form.save(commit=False)  #回傳一個user object
+           user.username = user.username.lower()
+           user.save()
+           login(request,user)
+           return redirect('home')
+        else:
+            messages.error(request,"Invalid registration!") 
+    context = {'form':form}
     return render(request, 'base/login_register.html',context)
 def logoutUser(request):
     logout(request)
