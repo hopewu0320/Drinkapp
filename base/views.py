@@ -57,6 +57,7 @@ def productinfo(request,pk):
     return render(request, 'base/productinfo.html',context)
 
 
+#目前問題:加入購物車,要知道目前的使用者是誰
 #東西加入完購物車 導向cart
 def addtocart(request,pk):    
     drink = Drink.objects.get(id=pk)
@@ -69,6 +70,7 @@ def addtocart(request,pk):
             Cart.objects.create(
             drink = drink,
             amount = 1,
+            user = request.user,
             subtotal = 0,
             )  
         return redirect('cart')

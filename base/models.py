@@ -24,4 +24,5 @@ class Cart(models.Model):
             self.amount = 1
         self.subtotal = self.drink.price * self.amount
         super(Cart, self).save(*args, **kwargs)
-#Order
+#Order 裡面要有Cart跟customer 每個Order搭配一個Cart, Cart裡面不需要有user
+#customer要有user phone address
