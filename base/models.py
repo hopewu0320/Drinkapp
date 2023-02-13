@@ -14,16 +14,11 @@ class Drink(models.Model):
 
 #Order 裡面要有Cart跟customer 每個Order搭配一個Cart, Cart裡面不需要有user
 #customer要有user phone address
-class Customer(models.Model):
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-    phone = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-    def __str__(self):
-        return self.name
+
 
 class Cart(models.Model):
     drink = models.ForeignKey(Drink,on_delete=models.SET_NULL,null=True)
-    customer = models.ForeignKey(Customer,on_delete=models.SET_NULL,null=True)
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     amount = models.IntegerField(null=True)
     subtotal = models.IntegerField(null=True)
     def __str__(self):
