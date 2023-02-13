@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"name": "mysite",
+			"path": "../../mysite/mysite"
+		},
+		{
+			"name": "polls",
+			"path": "../../mysite/polls"
+		},
+		{
+			"name": "blog",
+			"path": "../../mysite/blog"
+		},
+		{
+			"name": "accounts",
+			"path": "../../mysite/accounts"
+		},
+		{
+			"name": "djangoEnglishLearn",
+			"path": "../../djangoEnglishLearn"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "login_app"
+	}
+}
