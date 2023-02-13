@@ -62,8 +62,8 @@ def productinfo(request,pk):
 def addtocart(request,pk):    
     drink = Drink.objects.get(id=pk)
     if request.method == "POST":
-        if Cart.objects.filter(drink=drink).exists():
-            cart = Cart.objects.get(drink=drink)
+        if Cart.objects.filter(user=request.user,drink=drink).exists():
+            cart = Cart.objects.get(user=request.user,drink=drink)
             cart.amount = cart.amount+1
             cart.save()
         else:
@@ -76,7 +76,7 @@ def addtocart(request,pk):
         return redirect('cart')
     
 def cart(request):
-    carts = Cart.objects.all()
+    carts = Cart.objects.filter(user=request.user) #回傳hope 玫瑰茶一杯 晚安茶一杯
     total = 0 
     for cart in carts:
         total+=cart.subtotal
@@ -86,7 +86,7 @@ def cart(request):
 #更改購物車內容 增加 減少 刪除 清空購物車 
 def editcart(request,pk):
     drink = Drink.objects.get(id=pk)
-    cart = Cart.objects.get(drink=drink)
+    cart = Cart.objects.get(user=request.user,drink=drink)  #指定兩種屬性 因為hope 跟hopewu1都有玫瑰茶
     type = request.GET.get(drink.name)
     if type == '+':
         print("加入")
@@ -102,7 +102,7 @@ def editcart(request,pk):
 
 #刪除購物車
 def deletecart(request):
-    Cart.objects.all().delete()
+    Cart.objects.filter(user=request.user).delete()  #hope的購物車所有東西刪除
     return render(request, 'base/cart.html',{'total':0})
 
 #送出訂單(應該要使用form)
