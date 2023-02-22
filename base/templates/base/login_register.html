@@ -31,6 +31,14 @@
     <form method="POST" action="">
         {% csrf_token %}
         {{form.as_p}}
+        <div>
+            <label >phone number:</label>
+            <input type="text" name="phone" placeholder="Enter phone number" />
+        </div>
+        <div>
+            <label >address:</label>
+            <input type="text" name="address" placeholder="Enter address" />
+        </div>
         <input type="submit" value="Register">
     </form>
 </div>
