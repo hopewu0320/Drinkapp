@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Drink,Cart,Customer
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -63,6 +64,7 @@ def productinfo(request,pk):
 
 #目前問題:加入購物車,要知道目前的使用者是誰
 #東西加入完購物車 導向cart
+@login_required(login_url='login')
 def addtocart(request,pk):    
     drink = Drink.objects.get(id=pk)
     customer = Customer.objects.get(user=request.user)
@@ -79,7 +81,7 @@ def addtocart(request,pk):
             subtotal = 0,
             )  
         return redirect('cart')
-    
+@login_required(login_url='login')   
 def cart(request):
     customer = Customer.objects.get(user=request.user)
     carts = Cart.objects.filter(customer=customer) #回傳hope 玫瑰茶一杯 晚安茶一杯
