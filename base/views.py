@@ -115,5 +115,10 @@ def deletecart(request):
     Cart.objects.filter(customer=customer).delete()  #hope的購物車所有東西刪除
     return render(request, 'base/cart.html',{'total':0})
 
+def cart_order(request):
+    pass
+    context = {}
+    return render(request, 'base/order.html',context)
+
 
     
