@@ -118,6 +118,7 @@ def deletecart(request):
 def cart_order(request):
     pass
     context = {}
+    messages.info(request, 'Three credits remain in your account.')
     return render(request, 'base/order.html',context)
 
 
