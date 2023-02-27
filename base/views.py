@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+import requests
+from bs4 import BeautifulSoup
 from django.contrib.auth import (
     authenticate,
     login,
@@ -58,6 +60,14 @@ def home(request):
 
 def productinfo(request,pk):
     drink = Drink.objects.get(id=pk)
+    if drink.description=="":
+        r = requests.get("https://www.bella.tw/articles/novelty/30621")
+        soup = BeautifulSoup(r.text, 'html.parser')
+        sel = soup.select("p")
+        for s in sel:
+            if drink.name[:len(drink.name)-1] in s.text: #if drink.name[:n-1] in s.text
+                drink.description = s.text
+                drink.save()
     context = {'drink':drink}
     return render(request, 'base/productinfo.html',context)
 
