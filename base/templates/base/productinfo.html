@@ -1,15 +1,15 @@
 {% extends 'base/main.html' %}
 
+<!--
+    這個網頁要加上商品圖片 右側為cart.html的東西
+    商品敘述的文字盡量可以拆成多行
+-->
 
 {% block content %}
     
     <div>
-        <p>{{drink.name}}:</p>
-        <p>{{drink.description}}</p>
-        <form method="POST" action="{% url 'addtocart' drink.id %}">  <!-- addtocart-->
-            {% csrf_token %}
-            <input type="submit" value="加入購物車" />
-        </form>
+        <h1 style="text-align:center">商品敘述:</h1>
+        <p style="font-size:20px;">{{drink.description}}</p>
     </div>
     
 {% endblock content %}
