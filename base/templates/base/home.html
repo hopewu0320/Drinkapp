@@ -7,53 +7,44 @@
         flex-wrap: wrap;  
         justify-content:space-evenly;
         flex-direction: row;
-        background-color:aqua;
+       
         height: 300px;
         border:1px solid red;
+    }
+    a{
+        color: black;
+        text-decoration: none;
     }
 </style>
     <div class="product-container" >
         {% for drink in drinks %}
             {% if forloop.counter <= 3 %}
-                <div>
+                <div >
                     <img src="static/{{ drink.image }}" alt="{{ drink.name }}" width="300" height="200">
-                    <div>
-                        <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
+                    <div style="text-align:center">
+                        <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a> <!--a標籤沒換行-->
+                    </div>
+                    <div style="text-align:center">
+                        <p>NT${{drink.price}}</p>   <!--a標籤沒換行-->
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
         
     </div>
-    <div class="product-container" style="background-color: #fdf2e3;">
+    <div class="product-container" >
         {% for drink in drinks %}
             {% if forloop.counter > 3 %}
                 <div>
                     <img src="static/{{ drink.image }}" alt="{{ drink.name }}" width="300" height="200">
-                    <div>
-                        <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
+                    <div style="text-align:center" >
+                        <a href="{% url 'productinfo' drink.id %}" >{{drink.name}}</a>
+                    </div>
+                    <div style="text-align:center">
+                        <p>NT${{drink.price}}</p>
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
     </div>
-    <!--
-    <div class="product-container">
-        <div >
-            {% for drink in drinks %}
-                <div >
-                    <img src="static/{{drink.image}}" alt={{drink.name}} width="300" height="200">
-                    <div>
-                        <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="product-container" style="background-color: #fdf2e3;">
-        <p>454545</p>
-    </div>
-    -->
-    
-   
 {% endblock content %}
