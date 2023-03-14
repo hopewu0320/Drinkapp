@@ -2,50 +2,43 @@
 
 {% block content %}
 <style>
-    .cart-button{
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
+    .product-container{
+        display: flex;
+        flex-wrap: wrap;  
+        justify-content:space-evenly;
+        flex-direction: row;
+        background-color:aqua;
+        height: 300px;
+        border:1px solid red;
     }
 </style>
-    {% if request.user.is_authenticated %}
-    <div>
-        <p>Hello {{request.user.username}} ! <a href="{% url 'logout' %}">Logout</a></p>
+    <div class="product-container">
+        <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
+        <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
+        <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
+        <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
+        
     </div>
-    <div class="cart-button">
-        <div>
+    <div class="product-container" style="background-color: #fdf2e3;">
+        <p>454545</p>
+    </div>
+    <!--
+    <div class="product-container">
+        <div >
             {% for drink in drinks %}
-                <div>
-                    <img src="static/{{drink.image}}" alt={{drink.name}}>
+                <div >
+                    <img src="static/{{drink.image}}" alt={{drink.name}} width="300" height="200">
                     <div>
                         <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
                     </div>
                 </div>
             {% endfor %}
         </div>
-
-        <div>
-            <a href="{% url 'cart' %}">購物車</a>
-        </div>
     </div>
-    {% else %}
-    <div>
-        <p>Not Sign up Yet? Click <a href="{% url 'login' %}">Login</a></p>
+    <div class="product-container" style="background-color: #fdf2e3;">
+        <p>454545</p>
     </div>
-    <div class="cart-button">
-        <div>
-            {% for drink in drinks %}
-                <div>
-                    <img src="static/{{drink.image}}" alt={{drink.name}}>
-                    <div>
-                        <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
-        <div>
-            <a href="{% url 'cart' %}">購物車</a>
-        </div>
-    </div>
-    {% endif %}
+    -->
+    
+   
 {% endblock content %}
