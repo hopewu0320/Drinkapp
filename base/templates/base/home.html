@@ -12,27 +12,30 @@
         border:1px solid red;
     }
 </style>
-    <div class="product-container">
-        <div>
-            <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
-        </div>
-        <div>
-            <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
-        </div>
-        <div>
-            <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
-        </div>
+    <div class="product-container" >
+        {% for drink in drinks %}
+            {% if forloop.counter <= 3 %}
+                <div>
+                    <img src="static/{{ drink.image }}" alt="{{ drink.name }}" width="300" height="200">
+                    <div>
+                        <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
     </div>
     <div class="product-container" style="background-color: #fdf2e3;">
-        <div>
-            <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
-        </div>
-        <div>
-            <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
-        </div>
-        <div>
-            <img src="static/image/洛神花茶.jpg" alt={{drink.name}} width="200" height="200">
-        </div>
+        {% for drink in drinks %}
+            {% if forloop.counter > 3 %}
+                <div>
+                    <img src="static/{{ drink.image }}" alt="{{ drink.name }}" width="300" height="200">
+                    <div>
+                        <a href="{% url 'productinfo' drink.id %}">{{drink.name}}</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
     <!--
     <div class="product-container">
